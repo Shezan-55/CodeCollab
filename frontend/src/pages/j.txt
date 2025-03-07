@@ -1,0 +1,13 @@
+
+        <CodeMirror
+          theme={andromeda}
+          value={code}
+          onChange={(value) => setCode(value)}
+          minHeight="100%"
+          extensions={[loadLanguage("tsx")]}
+          style={{
+            fontSize: "17px",
+            height: "100vh",
+            width: "100%",
+          }}
+        />

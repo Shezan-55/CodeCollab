@@ -1,0 +1,16 @@
+body {
+    overflow: hidden;
+  }
+
+  
+
+
+  .CodeMirror {
+
+    font-size: 14px;
+    line-height: 1.6;
+    padding-top: 2px;
+    border: none;
+   
+    white-space: nowrap; /* Prevent wrapping of long lines */
+  }
