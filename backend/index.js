@@ -66,14 +66,16 @@ io.on("connection", (socket) => {
     io.emit("message_received", message);
   });
 
-  socket.on("code_sync", ({ code, socketId }) => {
-    io.to(socketId).emit("code_change", { code });
+  // Handle code changes and broadcast to all clients in the room
+  socket.on("code_change", ({ roomId, code, from }) => {
+    // Broadcast to all clients in the room except the sender
+    socket.to(roomId).emit("code_change", { code, from });
   });
 
   socket.on("disconnecting", () => {
-    const room = [...socket.rooms];
+    const rooms = [...socket.rooms];
 
-    room.forEach((roomId) => {
+    rooms.forEach((roomId) => {
       socket.in(roomId).emit("disconnected", {
         socketId: socket.id,
         LeavingUserName: userSocketMap[socket.id],

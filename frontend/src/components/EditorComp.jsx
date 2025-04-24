@@ -15,7 +15,7 @@ const EditorComp = ({socketRef,roomId, onCodeChange}) => {
       editorRef.current =  Codemirror.fromTextArea(editorRef.current, {
         mode: { name: "javascript", json: true },
         theme: "dracula",
-        utoCloseTags: true,
+        autoCloseTags: true,
         autoCloseBrackets: true,
         lineNumbers: true,
         

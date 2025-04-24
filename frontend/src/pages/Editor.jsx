@@ -149,7 +149,7 @@ const Editor = () => {
             />
           )}{" "}
 {openDrawer === "file" && <RunDrawer codeRef={codeRef} />}
-</div>
+        </div>
       )}
 
       <div className="flex-1 h-screen">
