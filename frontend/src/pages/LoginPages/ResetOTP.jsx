@@ -26,7 +26,7 @@ const ResetOTP = () => {
 
     try {
       const response = await axios.post(
-        "https://miniprojectsem6-rtrk.onrender.com",
+        "https://miniprojectsem6-rtrk.onrender.com/api/user/reset-email",
         { email }
       );
 

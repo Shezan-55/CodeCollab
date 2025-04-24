@@ -53,7 +53,7 @@ const Editor = () => {
 
           setUsers(clients);
 
-          socketRef.current.emit("code_sync", {
+          socketRef.current.emit("code_change", {
             code: codeRef.current,
             socketId,
           });
