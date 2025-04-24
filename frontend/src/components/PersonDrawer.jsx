@@ -18,7 +18,7 @@ const PersonDrawer = ({users, onCopy, onLeave }) => {
 
             <div className="mt-1">
               <p className="text-center text-white text-sm">
-                {user.userName.slice(0, 9)}
+                {user.userName.slice(0, 7)}..
               </p>
             </div>
           </div>

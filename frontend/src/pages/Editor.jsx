@@ -7,13 +7,10 @@ import CodeMirror from "@uiw/react-codemirror";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import PersonDrawer from "../components/PersonDrawer.jsx";
 import ChatDrawer from "../components/ChatDrawer.jsx";
-import FileDrawer from "../components/FileDrawer.jsx";
+import RunDrawer from "../components/RunDrawer.jsx";
 import toast from "react-hot-toast";
 import EditorComp from "../components/EditorComp.jsx";
 import { Toaster } from "react-hot-toast";
-
-
-
 
 const Editor = () => {
   const navigate = useNavigate();
@@ -24,12 +21,10 @@ const Editor = () => {
   const [code, setCode] = useState("");
   const [openDrawer, setOpenDrawer] = useState(null);
   const [users, setUsers] = useState([]);
-  const codeRef=useRef(null)  // store code fromm editor componenet
+  const codeRef = useRef(null); // store code fromm editor componenet
   const socketRef = useRef(null);
 
-
-
-
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const init = async () => {
@@ -55,20 +50,19 @@ const Editor = () => {
           if (joinedUserName !== userName) {
             toast.success(`${joinedUserName} had joined`);
           }
-            
+
           setUsers(clients);
 
-          socketRef.current.emit('code_sync',{
-            code:codeRef.current,
+          socketRef.current.emit("code_sync", {
+            code: codeRef.current,
             socketId,
-          })
-
+          });
         }
       );
 
       socketRef.current.on("disconnected", ({ socketId, LeavingUserName }) => {
-        toast(`${LeavingUserName} had left Room`,{
-          icon: '⚠️',
+        toast(`${LeavingUserName} had left Room`, {
+          icon: "⚠️",
         });
 
         setUsers((pre) => {
@@ -86,52 +80,35 @@ const Editor = () => {
     };
   }, []);
 
-
-
-
   const toggleDrawer = (drawer) => {
     setOpenDrawer((prevDrawer) => (prevDrawer === drawer ? null : drawer));
   };
 
-
-
-
-  async function copyRoomID () {
-    
-    try{    
+  async function copyRoomID() {
+    try {
       await navigator.clipboard.writeText(roomId);
       toast.success("Room ID Copied to Clipboard!");
-    }
-   
-    catch(err){
+    } catch (err) {
       toast.error("Failed to copy URL");
-      console.log(err)
+      console.log(err);
     }
-    
-  } 
-
-
-  function leaveRoom() {
-    navigate('/welcome', {
-      state: {
-        token:location.state.token
-      },
-    });
-
   }
 
-
+  function leaveRoom() {
+    navigate("/welcome", {
+      state: {
+        token: location.state.token,
+      },
+    });
+  }
 
   if (!location.state) {
     return <Navigate to={"/"} />;
   }
 
-
   return (
     <div className="flex w-screen h-screen overflow-hidden bg-black">
-
       <div className="pt-5 p-2 w-[3.5vw] bg-black h-screen flex flex-col items-center">
-
         <img
           src="/person_icon.png"
           onClick={() => toggleDrawer("person")}
@@ -147,7 +124,7 @@ const Editor = () => {
         />
 
         <img
-          src="/file_icon.png"
+          src="/run.png"
           onClick={() => toggleDrawer("file")}
           alt="File Icon"
           className="pt-5 pb-5 w-full h-auto cursor-pointer"
@@ -156,21 +133,34 @@ const Editor = () => {
 
       {openDrawer && (
         <div className="w-[20vw] h-screen bg-gray-900 text-white p-4">
-          {openDrawer === "person" && <PersonDrawer users={users} onCopy={copyRoomID} onLeave={leaveRoom}/>}
-          {openDrawer === "chat" && <ChatDrawer />}
-          {openDrawer === "file" && <FileDrawer />}
-        </div>
+          {openDrawer === "person" && (
+            <PersonDrawer
+              users={users}
+              onCopy={copyRoomID}
+              onLeave={leaveRoom}
+            />
+          )}
+          {openDrawer === "chat" && (
+            <ChatDrawer
+              socketRef={socketRef}
+              username={userName}
+              messages={messages}
+              setMessages={setMessages}
+            />
+          )}{" "}
+{openDrawer === "file" && <RunDrawer codeRef={codeRef} />}
+</div>
       )}
 
       <div className="flex-1 h-screen">
-
-      <EditorComp socketRef={socketRef} roomId={roomId} 
-    onCodeChange={(code) => {
-      codeRef.current = code;
-    }} 
-    /> 
-
-        
+        <EditorComp
+          socketRef={socketRef}
+          roomId={roomId}
+          onCodeChange={(code) => {
+            codeRef.current = code;
+            setCode(code);
+          }}
+        />
       </div>
     </div>
   );

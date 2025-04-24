@@ -14,3 +14,12 @@ body {
    
     white-space: nowrap; /* Prevent wrapping of long lines */
   }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Webkit (Chrome, Safari) */
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Hide scrollbar in IE/Edge */
+    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+  }
+  
