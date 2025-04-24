@@ -72,6 +72,12 @@ io.on("connection", (socket) => {
     socket.to(roomId).emit("code_change", { code, from });
   });
 
+  socket.on('code_sync',({code, socketId})=>{
+    
+    io.to(socketId).emit('code_change',{ code })
+
+  })
+
   socket.on("disconnecting", () => {
     const rooms = [...socket.rooms];
 
