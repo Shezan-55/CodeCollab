@@ -26,7 +26,7 @@ const ResetOTP = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/user/reset-email",
+        "https://miniprojectsem6-rtrk.onrender.com/api/user/reset-email",
         { email }
       );
 
@@ -69,7 +69,7 @@ const ResetOTP = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/user/verify-otp",
+        "https://miniprojectsem6-rtrk.onrender.com/api/user/verify-otp",
         {
           email,
           otp: enteredOtp,

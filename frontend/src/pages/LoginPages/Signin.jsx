@@ -35,7 +35,7 @@ const Signin = () => {
 
 
     try {
-      const response = await axios.post("http://localhost:5000/api/user/signin", { email, password});
+      const response = await axios.post("https://miniprojectsem6-rtrk.onrender.com/api/user/signin", { email, password});
       console.log(response.data)
       if (response.data.success) {
         navigate("/welcome", {

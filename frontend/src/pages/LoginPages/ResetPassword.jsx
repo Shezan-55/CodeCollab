@@ -22,7 +22,7 @@ const ResetPassword = () => {
     
     try{
 
-      const response= await axios.post("http://localhost:5000/api/user/reset-password",{email, password})
+      const response= await axios.post("https://miniprojectsem6-rtrk.onrender.com/api/user/reset-password",{email, password})
 
       if (response.data.success) {
         toast.success(response.data.msg)

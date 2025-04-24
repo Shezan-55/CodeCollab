@@ -8,5 +8,5 @@ export const socket = async () => {
         transports: ['websocket'],
     };
 
-    return io("http://localhost:5000", options);
+    return io("https://miniprojectsem6-rtrk.onrender.com", options);
 };

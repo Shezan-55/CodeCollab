@@ -21,7 +21,7 @@ const Signup = () => {
 
 
     try {
-      const response = await axios.post("http://localhost:5000/api/user/signup", { email, password, name});
+      const response = await axios.post("https://miniprojectsem6-rtrk.onrender.com/api/user/signup", { email, password, name});
 
       if (response.data.success) {
         navigate("/email-verify", {

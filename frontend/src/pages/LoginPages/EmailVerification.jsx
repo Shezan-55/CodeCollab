@@ -33,7 +33,7 @@ const EmailVerification = () => {
 
 
         try {
-            const response = await axios.post("http://localhost:5000/api/user/email-verify", { email,name});
+            const response = await axios.post("https://miniprojectsem6-rtrk.onrender.com/api/user/email-verify", { email,name});
 
       
             if (response.data.success) {
