@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://code-colab94.vercel.app",  // Use your frontend URL 
+    origin: "https://code-colab94.vercel.app",  // No trailing slash
     methods: ["GET", "POST"],
   },
 });
@@ -19,9 +19,10 @@ const io = new Server(server, {
 const PORT = 5000;
 
 app.use(cors({
-  origin: "https://code-colab94.vercel.app", 
+  origin: "https://code-colab94.vercel.app",  // No trailing slash
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
