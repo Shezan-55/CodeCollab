@@ -7,7 +7,7 @@ import "dotenv/config"
 async function confirmEmail(email,name,verificationToken) {
 
 
-const verificationUrl = `https://miniprojectsem6-rtrk.onrender.com/api/user/verify/${verificationToken}`;
+const verificationUrl = `https://code-colab95.vercel.app/verify/${verificationToken}`;
 
 
 try{      
