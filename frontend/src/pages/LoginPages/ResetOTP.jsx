@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate, Navigate, useLocation } from "react-router-dom";
-const API_URL = import.meta.env.Backend_URL;
+const API_URL = import.meta.env.VITE_Backend_URL;
 
 const ResetOTP = () => {
   const [email, setEmail] = useState("");
