@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+const API_URL = import.meta.env.VITE_Backend_URL;
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Signin = () => {
 
 
     try {
-      const response = await axios.post("https://miniprojectsem6-rtrk.onrender.com/api/user/signin", { email, password});
+      const response = await axios.post(`${API_URL}/api/user/signi`, { email, password});
       console.log(response.data)
       if (response.data.success) {
         navigate("/welcome", {

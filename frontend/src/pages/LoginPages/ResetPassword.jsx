@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_Backend_URL;
 
 const ResetPassword = () => {
 
@@ -22,11 +23,11 @@ const ResetPassword = () => {
     
     try{
 
-      const response= await axios.post("https://miniprojectsem6-rtrk.onrender.com/api/user/reset-password",{email, password})
+      const response= await axios.post(`${API_URL}/api/user/reset-password`,{email, password})
 
       if (response.data.success) {
         toast.success(response.data.msg)
-        navigate("/")
+        navigate("/signin")
       }
 
       else {
@@ -40,7 +41,7 @@ const ResetPassword = () => {
   }
 
   if(!location.state){
-    return <Navigate to="/" replace />;
+    return <Navigate to="/signin" replace />;
   }
   return (
     <div className="flex items-center justify-center h-screen bg-black text-white">

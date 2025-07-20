@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import {useNavigate, Navigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+const API_URL = import.meta.env.VITE_Backend_URL;
 
 
 const EmailVerification = () => {
     const [message, setMessage] = useState("");
     const [isButtonDisabled, setIsButtonDisabled] = useState(true); // Initially disabled
     const [counter, setCounter] = useState(30); // 30 seconds countdown
-
+  const navigate = useNavigate(); 
     const location = useLocation();
     const name = location.state?.name; 
     const email = location.state?.email; 
@@ -33,7 +34,7 @@ const EmailVerification = () => {
 
 
         try {
-            const response = await axios.post("https://miniprojectsem6-rtrk.onrender.com/api/user/email-verify", { email,name});
+            const response = await axios.post(`${API_URL}/api/user/email-verify`, { email,name});
 
       
             if (response.data.success) {

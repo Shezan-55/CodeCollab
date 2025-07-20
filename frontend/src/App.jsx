@@ -10,6 +10,7 @@ import ResetOTP from './pages/LoginPages/ResetOTP';
 import ResetPassword from './pages/LoginPages/ResetPassword';
 import Welcome from './pages/Welcome';
 import Editor from './pages/Editor';
+import FrontPage from './pages/FrontPage';
 
 
 
@@ -28,8 +29,9 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-          
-          <Route path='/' element={<Signin />} />
+
+          <Route path='/' element={<FrontPage />} />
+          <Route path='/signin' element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/verify/:id" element={<Verify />} />
           <Route path="/email-verify" element={<EmailVerification />} />

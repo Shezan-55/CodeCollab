@@ -36,7 +36,7 @@ const Editor = () => {
       function handelError(err) {
         console.log("Error: ", err);
         toast.error("Socket connection failed, try agian");
-        navigate("/");
+        navigate("/welcome");
       }
 
       socketRef.current.emit("join", {
@@ -112,62 +112,83 @@ const Editor = () => {
   }
 
   return (
-    <div className="flex w-screen h-screen overflow-hidden bg-black">
-      <div className="pt-5 p-2 w-[3.5vw] bg-black h-screen flex flex-col items-center">
-        <img
-          src="/person_icon.png"
-          onClick={() => toggleDrawer("person")}
-          alt="Person Icon"
-          className="pt-5 pb-5 w-full h-auto cursor-pointer"
-        />
+<div className="flex w-screen h-screen overflow-hidden bg-black relative">
+  {/* === ICON BAR === */}
+  <div className="hidden sm:flex pt-5 p-2 w-[3.5vw] bg-black h-screen flex-col items-center">
+    <img
+      src="/person_icon.png"
+      onClick={() => toggleDrawer("person")}
+      alt="Person Icon"
+      className="pt-5 pb-5 w-full h-auto cursor-pointer"
+    />
+    <img
+      src="/chat_icon.png"
+      onClick={() => toggleDrawer("chat")}
+      alt="Chat Icon"
+      className="pt-5 pb-5 w-full h-auto cursor-pointer"
+    />
+    <img
+      src="/run.png"
+      onClick={() => toggleDrawer("file")}
+      alt="Run Icon"
+      className="pt-5 pb-5 w-full h-auto cursor-pointer"
+    />
+  </div>
 
-        <img
-          src="/chat_icon.png"
-          onClick={() => toggleDrawer("chat")}
-          alt="Chat Icon"
-          className="pt-5 pb-5 w-full h-auto cursor-pointer"
-        />
+  {/* === MOBILE ICON BAR (BOTTOM) === */}
+  <div className="sm:hidden fixed bottom-0 left-0 w-full h-[8vh] bg-black flex flex-row items-center justify-evenly z-40">
+    <img
+      src="/person_icon.png"
+      onClick={() => toggleDrawer("person")}
+      alt="Person Icon"
+      className="w-8 h-8 cursor-pointer"
+    />
+    <img
+      src="/chat_icon.png"
+      onClick={() => toggleDrawer("chat")}
+      alt="Chat Icon"
+      className="w-8 h-8 cursor-pointer"
+    />
+    <img
+      src="/run.png"
+      onClick={() => toggleDrawer("file")}
+      alt="Run Icon"
+      className="w-8 h-8 cursor-pointer"
+    />
+  </div>
 
-        <img
-          src="/run.png"
-          onClick={() => toggleDrawer("file")}
-          alt="File Icon"
-          className="pt-5 pb-5 w-full h-auto cursor-pointer"
-        />
-      </div>
-
-      {openDrawer && (
-        <div className="w-[20vw] h-screen bg-gray-900 text-white p-4">
-          {openDrawer === "person" && (
-            <PersonDrawer
-              users={users}
-              onCopy={copyRoomID}
-              onLeave={leaveRoom}
-            />
-          )}
-          {openDrawer === "chat" && (
-            <ChatDrawer
-              socketRef={socketRef}
-              username={userName}
-              messages={messages}
-              setMessages={setMessages}
-            />
-          )}{" "}
-{openDrawer === "file" && <RunDrawer codeRef={codeRef} />}
-        </div>
+  {/* === DRAWER === */}
+  {openDrawer && (
+    <div className="sm:w-[20vw] sm:h-screen w-full h-[30vh] bg-gray-900 text-white p-4 z-50 fixed sm:static bottom-[8vh] sm:bottom-0 left-0 flex sm:flex-col flex-row">
+      {openDrawer === "person" && (
+        <PersonDrawer users={users} onCopy={copyRoomID} onLeave={leaveRoom} />
       )}
-
-      <div className="flex-1 h-screen">
-        <EditorComp
+      {openDrawer === "chat" && (
+        <ChatDrawer
           socketRef={socketRef}
-          roomId={roomId}
-          onCodeChange={(code) => {
-            codeRef.current = code;
-            setCode(code);
-          }}
+          username={userName}
+          messages={messages}
+          setMessages={setMessages}
         />
-      </div>
+      )}
+      {openDrawer === "file" && <RunDrawer codeRef={codeRef} />}
     </div>
+  )}
+
+  {/* === CODE EDITOR === */}
+  <div className="flex-1 h-full sm:h-screen">
+    <EditorComp
+      socketRef={socketRef}
+      roomId={roomId}
+      onCodeChange={(code) => {
+        codeRef.current = code;
+        setCode(code);
+      }}
+    />
+  </div>
+</div>
+
+
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate, Navigate, useLocation } from "react-router-dom";
+const API_URL = import.meta.env.VITE_Backend_URL;
 
 const ResetOTP = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const ResetOTP = () => {
 
     try {
       const response = await axios.post(
-        "https://miniprojectsem6-rtrk.onrender.com/api/user/reset-email",
+        `${API_URL}/api/user/reset-email`,
         { email }
       );
 
@@ -69,7 +70,7 @@ const ResetOTP = () => {
 
     try {
       const response = await axios.post(
-        "https://miniprojectsem6-rtrk.onrender.com/api/user/verify-otp",
+        `${API_URL}/api/user/verify-otp`,
         {
           email,
           otp: enteredOtp,
