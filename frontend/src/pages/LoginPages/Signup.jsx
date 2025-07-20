@@ -23,7 +23,7 @@ const Signup = () => {
 
 
     try {
-      const response = await axios.post(`${API_URL}`, { email, password, name});
+      const response = await axios.post(`${API_URL}/api/user/signup`, { email, password, name});
 
       if (response.data.success) {
         navigate("/email-verify", {
