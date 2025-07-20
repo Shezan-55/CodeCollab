@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useNavigate, Navigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-const API_URL = import.meta.env.VITE_Backend_URL;
+const API_URL = import.meta.env.Backend_URL;
 
 
 const EmailVerification = () => {

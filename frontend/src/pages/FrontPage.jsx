@@ -58,7 +58,7 @@ export default function WelcomePage() {
           href="https://www.linkedin.com/in/ayushdahiwale"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
+          className="flex items-center border-2 border-white hover:bg-white hover:text-black px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
           aria-label="LinkedIn"
         >
           <LinkedInIcon /> LinkedIn
@@ -67,7 +67,7 @@ export default function WelcomePage() {
   href="https://github.com/AyushD95"
   target="_blank"
   rel="noopener noreferrer"
-  className="flex items-center bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
+  className="flex items-center border-2 border-white hover:bg-white hover:text-black px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
   aria-label="GitHub"
 >
   <svg
@@ -127,7 +127,7 @@ export default function WelcomePage() {
 
 
         {/* Your Name */}
-        <p className="mt-12 text-gray-400 text-sm italic">
+        <p className="mt-12 text-gray-400 text-md italic">
           Created by <span className="text-white font-semibold">Ayush D</span>
         </p>
       </div>
