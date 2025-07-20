@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+
+
 
 const FrontPage = () => (
   <svg
@@ -27,13 +29,15 @@ const LinkedInIcon = () => (
   </svg>
 );
 
-export default function WelcomePage() {
-  const navigate = useNavigate();
-  const [videoReady, setVideoReady] = useState(false);
 
-  const navigateSignup = () => {
-    navigate("/signin");
-  };
+
+export default function WelcomePage() {
+
+  const navigate = useNavigate();
+
+ const navigateSignup= ()=>{
+    navigate("/signin")
+  }
 
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center px-6 text-center text-white overflow-hidden ">
@@ -42,111 +46,102 @@ export default function WelcomePage() {
         autoPlay
         loop
         muted
+        preload="auto"
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover -z-10"
         src="/background.mp4"
-        onCanPlay={() => setVideoReady(true)} // Set state when video is ready
       />
 
-      {/* Show loading or nothing until video is ready */}
-      {!videoReady && (
-        <div className="absolute inset-0 flex justify-center items-center bg-black">
-          <p className="text-white text-lg">Loading background...</p>
-        </div>
-      )}
+      {/* Top Right Buttons */}
+      <div className="absolute top-6 right-6 flex items-center space-x-6 z-20">
+        <a
+          href="https://www.linkedin.com/in/ayushdahiwale"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
+          aria-label="LinkedIn"
+        >
+          <LinkedInIcon /> LinkedIn
+        </a>
+<a
+  href="https://github.com/AyushD95"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
+  aria-label="GitHub"
+>
+  <svg
+    className="w-5 h-5 inline-block mr-2"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      fillRule="evenodd"
+      d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577
+      0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.753-1.333-1.753-1.09-.745.083-.729.083-.729
+      1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.996.108-.775.42-1.305.763-1.604-2.665-.305-5.466-1.335-5.466-5.933
+      0-1.31.468-2.38 1.236-3.22-.123-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 013.003-.404
+      11.5 11.5 0 013.003.404c2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.241 2.874.119 3.176.77.84
+      1.234 1.91 1.234 3.22 0 4.61-2.804 5.625-5.475 5.922.43.372.823 1.104.823 2.224
+      0 1.606-.015 2.898-.015 3.292 0 .319.216.694.825.576C20.565 21.796 24 17.298 24 12
+      24 5.373 18.627 0 12 0z"
+      clipRule="evenodd"
+    />
+  </svg>
+  GitHub
+</a>
 
-      {/* Main Content - render only after video is ready */}
-      {videoReady && (
-        <>
-          {/* Top Right Buttons */}
-          <div className="absolute top-6 right-6 flex items-center space-x-6 z-20">
-            <a
-              href="https://www.linkedin.com/in/ayushdahiwale"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
-              aria-label="LinkedIn"
-            >
-              <LinkedInIcon /> LinkedIn
-            </a>
-            <a
-              href="https://github.com/AyushD95"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full text-white text-sm font-semibold shadow-md transition"
-              aria-label="GitHub"
-            >
-              <svg
-                className="w-5 h-5 inline-block mr-2"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577
-                  0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.753-1.333-1.753-1.09-.745.083-.729.083-.729
-                  1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.996.108-.775.42-1.305.763-1.604-2.665-.305-5.466-1.335-5.466-5.933
-                  0-1.31.468-2.38 1.236-3.22-.123-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 013.003-.404
-                  11.5 11.5 0 013.003.404c2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.241 2.874.119 3.176.77.84
-                  1.234 1.91 1.234 3.22 0 4.61-2.804 5.625-5.475 5.922.43.372.823 1.104.823 2.224
-                  0 1.606-.015 2.898-.015 3.292 0 .319.216.694.825.576C20.565 21.796 24 17.298 24 12
-                  24 5.373 18.627 0 12 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              GitHub
-            </a>
-          </div>
+  
+      </div>
 
-          {/* Main Content */}
-          <div className="max-w-xl animate-fadeIn space-y-6 relative z-10 mt-20 sm:mt-32">
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-red-500">
-              Welcome to <span className="text-white">Code Collab</span>
-            </h1>
-            <p className="text-white text-lg sm:text-xl leading-relaxed">
-              Collaborate on code in real-time with your team. Simplify workflows,
-              boost creativity, and build better together.
-            </p>
+      {/* Main Content */}
+      <div className="max-w-xl animate-fadeIn space-y-6 relative z-10 mt-20 sm:mt-32">
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-red-500">
+          Welcome to <span className="text-white">Code Collab</span>
+        </h1>
+        <p className="text-white text-lg sm:text-xl leading-relaxed">
+          Collaborate on code in real-time with your team. Simplify workflows,
+          boost creativity, and build better together.
+        </p>
 
-            <div className="flex justify-center gap-6">
-              <button
-                onClick={navigateSignup}
-                className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-3xl px-8 sm:px-12 py-3.5 sm:py-4 text-base sm:text-xl shadow-lg transform hover:scale-105 active:scale-95 transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-500/50"
-                aria-label="Get Started"
-              >
-                Get Started
-              </button>
+<div className="flex justify-center gap-6">
+  <button
+    onClick={navigateSignup}
+    className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-3xl px-8 sm:px-12 py-3.5 sm:py-4 text-base sm:text-xl shadow-lg transform hover:scale-105 active:scale-95 transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-500/50"
+    aria-label="Get Started"
+  >
+    Get Started
+  </button>
 
-              <a
-                href="https://github.com/yourusername/your-repo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-3xl px-7 sm:px-9 py-3.5 sm:py-4 text-base sm:text-xl shadow-lg inline-flex items-center transform hover:scale-105 active:scale-95 transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-500/50"
-                aria-label="View Source Code"
-              >
-                Source Code
-              </a>
-            </div>
+  <a
+    href="https://github.com/yourusername/your-repo"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-3xl px-7 sm:px-9 py-3.5 sm:py-4 text-base sm:text-xl shadow-lg inline-flex items-center transform hover:scale-105 active:scale-95 transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-500/50"
+    aria-label="View Source Code"
+  >
+    Source Code
+  </a>
+</div>
 
-            {/* Your Name */}
-            <p className="mt-12 text-gray-400 text-sm italic">
-              Created by <span className="text-white font-semibold">Ayush D</span>
-            </p>
-          </div>
 
-          {/* Animate fade-in keyframes */}
-          <style>{`
-            @keyframes fadeIn {
-              from { opacity: 0; transform: translateY(10px);}
-              to { opacity: 1; transform: translateY(0);}
-            }
-            .animate-fadeIn {
-              animation: fadeIn 0.7s ease forwards;
-            }
-          `}</style>
-        </>
-      )}
+        {/* Your Name */}
+        <p className="mt-12 text-gray-400 text-sm italic">
+          Created by <span className="text-white font-semibold">Ayush D</span>
+        </p>
+      </div>
+
+      {/* Animate fade-in keyframes */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px);}
+          to { opacity: 1; transform: translateY(0);}
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.7s ease forwards;
+        }
+      `}</style>
     </div>
   );
 }
