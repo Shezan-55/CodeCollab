@@ -30,7 +30,7 @@ app.use(express.json());
 app.use("/api/user", userRoute);
 app.use("/profile", profileRoute);
 app.get("/", (req,res)=>{
-  res.send("Site is liveee")
+  res.send("Site is livee")
 });
 
 mongoConnect(process.env.MONGO_URL);
