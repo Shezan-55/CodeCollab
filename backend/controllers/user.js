@@ -124,6 +124,7 @@ try{
 }
 
 catch(err){
+  console.error("Login Error:", err);
         return res.status(500).json({
           success: false,
           msg: "An error occurred during Login", 
