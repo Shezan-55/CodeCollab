@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { CheckCircle } from 'lucide-react'; // Make sure to install `lucide-react`
+const API_URL = import.meta.env.VITE_Backend_URL;
 
 const ActualVerify = () => {
   const { token } = useParams();
@@ -14,7 +15,7 @@ const ActualVerify = () => {
     const verifyEmail = async () => {
       try {
         const response = await axios.get(
-          `https://miniprojectsem6-rtrk.onrender.com/api/user/verify/${token}`
+          `${API_URL}/api/user/verify/${token}`
         );
         setMessage("✅ Email verified successfully!");
         setSuccess(true);

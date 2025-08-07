@@ -1,4 +1,5 @@
 import { io } from "socket.io-client";
+const API_URL = import.meta.env.VITE_Backend_URL;
 
 export const socket = async () => {
     const options = {
@@ -8,5 +9,5 @@ export const socket = async () => {
         transports: ['websocket'],
     };
 
-    return io("https://miniprojectsem6-rtrk.onrender.com", options);
+    return io(`${API_URL}`, options);
 };
