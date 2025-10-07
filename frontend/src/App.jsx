@@ -5,7 +5,8 @@ import { Toaster } from 'react-hot-toast';
 import Signin from './pages/LoginPages/Signin';
 import Signup from './pages/LoginPages/Signup';
 import EmailVerification from './pages/LoginPages/EmailVerification';
-
+import ResetOTP from './pages/LoginPages/ResetOTP';
+import ResetPassword from './pages/LoginPages/ResetPassword';
 import Welcome from './pages/Welcome';
 import Editor from './pages/Editor';
 import FrontPage from './pages/FrontPage';
@@ -38,7 +39,8 @@ function App() {
 
           
           <Route path="/email-verify" element={<EmailVerification />} />
-
+          <Route path="/reset-verify" element={<ResetOTP />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
 
           <Route path="/welcome" element={<Welcome />} />

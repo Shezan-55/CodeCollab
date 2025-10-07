@@ -98,7 +98,13 @@ const Signin = () => {
     }
   };
 
-
+  const navForgotPass = () => {
+    navigate("/reset-verify", {
+      state: {
+        isReset: true,
+      },
+    });
+  };
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black">
@@ -164,7 +170,12 @@ const Signin = () => {
             Sign Up
           </span>
         </p>
-
+        <p
+          className="mt-2 text-center text-gray-300 underline cursor-pointer"
+          onClick={navForgotPass}
+        >
+          Forgot Password?
+        </p>
       </form>
     </div>
   );
