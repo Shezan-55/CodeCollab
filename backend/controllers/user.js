@@ -4,7 +4,6 @@ import { createHmac } from "crypto";
 import confirmEmail from "../emails/confirmEmail.js";
 import generateEmailVerfyToken from "../auth/verifyTokenGen.js";
 import { generateAuthToken } from "../middleware/auth.js";
-import forgotPasswordEmail from "../emails/forgotPassword.js";
 
 
 
@@ -228,52 +227,6 @@ async function sendVerifyLink(req,res) {
 }
 
 
-async function forgotPassword(req,res) {
-    
-try{ 
-  const{email}=req.body;
-
-
-  const user= await User.findOne({email:email});
-
-  if(!user){
-    return res.status(400).json({
-      success:false,
-      msg:"User not found"
-    })
-  }
-
-
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-  user.otp = otp;
-  user.otpExpires = Date.now() + 10 * 60 * 1000;
-  await user.save();
-
-
-  const emailSent = await forgotPasswordEmail(email, user.name, otp);
-  if (!emailSent) {
-    return res.status(500).json({
-      success: false,
-      msg: "Failed to send email OTP",
-    });
-  }
-
-  return res.status(201).json({
-    success: true,
-    msg:"OTP has been sent to your email"
-  });
-
-
-}
-
-catch (error) {
-  return res.status(500).json({
-    success: false,
-    msg: "Error occurred during sending OTP",
-  });
-}
-}
 
 
 
@@ -355,4 +308,4 @@ async function resetPassword(req, res) {
   }
 }
 
-export {handelUserSignin,handelUserSignup,verifyEmail, sendVerifyLink, forgotPassword,verifyOTP, resetPassword};
+export {handelUserSignin,handelUserSignup,verifyEmail, sendVerifyLink,verifyOTP, resetPassword};

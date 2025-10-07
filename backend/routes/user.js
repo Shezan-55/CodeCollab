@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { handelUserSignin, handelUserSignup, verifyEmail, sendVerifyLink, forgotPassword ,verifyOTP, resetPassword} from "../controllers/user.js";
+import { handelUserSignin, handelUserSignup, verifyEmail, sendVerifyLink, verifyOTP} from "../controllers/user.js";
 import signupValidationRules from "../validator/validationRules.js";
 
 const router= Router();
@@ -15,11 +15,9 @@ router.get("/verify/:verifyToken",verifyEmail)
 
 router.post("/email-verify",sendVerifyLink)
 
-router.post("/reset-email",forgotPassword)
 
 router.post("/verify-otp",verifyOTP)
 
-router.post("/reset-password",resetPassword)
 
 
 
